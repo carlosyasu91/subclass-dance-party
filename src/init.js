@@ -22,11 +22,28 @@ $(document).ready(function() {
 
     // make a dancer with a random position
 
-    var dancer = dancerMakerFunction(
+    var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
+    $('body').append(dancer.$node);
+  });
+
+$(".addLoopyButton").on("click", function(event) {
+    var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
+    console.log(dancerMakerFunctionName);
+    // get the maker function for the kind of dancer we're supposed to make
+    var dancerMakerFunction = window[dancerMakerFunctionName];
+
+    var radius = Math.floor(Math.random() * 50);
+    // make a dancer with a random position
+
+    var dancer = new dancerMakerFunction(
+      $("body").height() * Math.random(),
+      $("body").width() * Math.random(),
+      Math.random() * 1000,
+      radius);
     $('body').append(dancer.$node);
   });
 });

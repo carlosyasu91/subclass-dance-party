@@ -120,12 +120,12 @@ function createApples(){
     apples.push(apple2);
 }
 
-setInterval(createApples, 3000);
+setInterval(createApples, 2000);
 
 function checkCollisionForPlayer1() {
   for(var i = 0; i < apples.length; i++){
-    if(player1.left > apples[i].left-30 && player1.left < apples[i].left+30){
-      if(player1.top > apples[i].top-30 && player1.top < apples[i].top+30){
+    if(player1.left > apples[i].left-15 && player1.left < apples[i].left+15){
+      if(player1.top > apples[i].top-15 && player1.top < apples[i].top+15){
         player1.getHit();
       }
     }
@@ -134,8 +134,8 @@ function checkCollisionForPlayer1() {
 setInterval(checkCollisionForPlayer1, 30);
 function checkCollisionForPlayer2() {
   for(var i = 0; i < apples.length; i++){
-    if(player2.left > apples[i].left-30 && player2.left < apples[i].left+30){
-      if(player2.top > apples[i].top-30 && player2.top < apples[i].top+30){
+    if(player2.left > apples[i].left-15 && player2.left < apples[i].left+15){
+      if(player2.top > apples[i].top-15 && player2.top < apples[i].top+15){
         player2.getHit();
       }
     }

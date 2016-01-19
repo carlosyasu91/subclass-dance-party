@@ -23,7 +23,7 @@ makeApples.prototype.step = function() {
     this.top += 100;
     this.$node.animate({
       top: this.top,
-    }, "fast");
+    }, 30);
     // this.$node.toggle();
   }
 

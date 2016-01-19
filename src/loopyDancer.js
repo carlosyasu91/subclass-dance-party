@@ -4,8 +4,6 @@ var makeLoopyDancer = function(top, left, timeBetweenSteps, radius) {
   this.time = 0;
   this.top = top;
   this.left = left;
-  this.newTop;
-  this.newLeft;
   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
   // so we must keep a copy of the old version of this function
   };

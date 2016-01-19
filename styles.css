@@ -35,3 +35,6 @@ body, a:link, a:visited, a:active{
   width: 100px;
   height: 100px;
 }
+.wins{
+  position: absolute;
+}

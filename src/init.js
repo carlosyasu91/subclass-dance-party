@@ -2,6 +2,7 @@ $(document).ready(function() {
   window.dancers = [];
   var player1;
   var player2;
+  var hasWon = false;
 
   $(".addDancerButton").on("click", function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -29,9 +30,10 @@ $(document).ready(function() {
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
-    $('body').append(dancer.$node);
-    dancers.push(dancer);
-  });
+      $('body').append(dancer.$node);
+      dancers.push(dancer);
+      dancer.$node.hover(dancer.mouseOver.bind(dancer));
+    });
 
 $(".addLoopyButton").on("click", function(event) {
     var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
@@ -48,6 +50,7 @@ $(".addLoopyButton").on("click", function(event) {
       radius);
     $('body').append(dancer.$node);
     dancers.push(dancer);
+    dancer.$node.hover(dancer.mouseOver.bind(dancer));
   });
 
 $(".addGrowingButton").on("click", function(event) {
@@ -63,6 +66,7 @@ $(".addGrowingButton").on("click", function(event) {
       );
     $('body').append(dancer.$node);
     dancers.push(dancer);
+    dancer.$node.hover(dancer.mouseOver.bind(dancer));
   });
 
 $(".addClimber").on("click", function(event) {
@@ -92,21 +96,29 @@ $(".lineUp").on("click", function(event) {
       dancers[i].lineUp(i*50);
     }
   });
+
+
 $(this).keypress(function(event){
   if(event.keyCode === 105){
     if(player1.climb()){
-      win(1);
+      if(!hasWon){
+        win(1);
+        hasWon = true;
+      }
     }
   }
   if(event.keyCode === 119){
     if(player2.climb()){
-      win(2);
+      if(!hasWon){
+        win(2);
+        hasWon = true;
+      }
     }
   }
 });
 
 function win(player){
-  $('body').append($('<h1>Player '+player+' wins!</h1>'));
+  $('body').append($('<h1 class="wins">Player '+player+' wins!</h1>'));
 }
 
 });

@@ -4,6 +4,8 @@ $(document).ready(function() {
   window.apples = [];
   var player1;
   var player2;
+  var middleOfTheScreenY = $("body").height()/2;
+  var middleOfTheScreenX = $("body").width()/2;
   var hasWon = false;
 
   $(".addDancerButton").on("click", function(event) {
@@ -95,6 +97,7 @@ $(".addClimber").on("click", function(event) {
     players.push(player2);
   });
 
+
 function createApples(){
     var appleMakerFunctionName = $(".addApples").data("apple-maker-function-name");
     // get the maker function for the kind of dancer we're supposed to make
@@ -119,12 +122,26 @@ function createApples(){
 
 setInterval(createApples, 3000);
 
-  function overlap() {
-    console.log(player1.getPosition);
-    if(apple.getPosition === player1.getPosition) {
-      player1.getHit();
+function checkCollisionForPlayer1() {
+  for(var i = 0; i < apples.length; i++){
+    if(player1.left > apples[i].left-30 && player1.left < apples[i].left+30){
+      if(player1.top > apples[i].top-30 && player1.top < apples[i].top+30){
+        player1.getHit();
+      }
     }
   }
+}
+setInterval(checkCollisionForPlayer1, 30);
+function checkCollisionForPlayer2() {
+  for(var i = 0; i < apples.length; i++){
+    if(player2.left > apples[i].left-30 && player2.left < apples[i].left+30){
+      if(player2.top > apples[i].top-30 && player2.top < apples[i].top+30){
+        player2.getHit();
+      }
+    }
+  }
+}
+setInterval(checkCollisionForPlayer2, 30);
 
 //setInterval(overlap, 50);
 
@@ -150,10 +167,10 @@ $(this).keypress(function(event){
     }
   }
 
-  if(event.keyCode === 106){ // J key pressed
+  if(event.keyCode === 106 && player1.left > middleOfTheScreenX + 200){ // J key pressed
     player1.moveLeft();
   }
-  if(event.keyCode === 108){ // L key pressed
+  if(event.keyCode === 108 && player1.left < middleOfTheScreenX + 350){ // L key pressed
     player1.moveRight();
   }
 
@@ -167,10 +184,10 @@ $(this).keypress(function(event){
     }
   }
 
-  if(event.keyCode === 97){ // A key pressed
+  if(event.keyCode === 97 && player2.left > middleOfTheScreenX - 350){ // A key pressed
     player2.moveLeft();
   }
-  if(event.keyCode === 100){ // D key pressed
+  if(event.keyCode === 100 && player2.left < middleOfTheScreenX - 200){ // D key pressed
     player2.moveRight();
   }
 });

@@ -48,6 +48,6 @@ makeClimber.prototype.moveLeft = function() {
 };
 
 makeClimber.prototype.getHit = function() {
-  this.top += 30;
+  this.top += 70;
   this.setPosition(this.top, this.left);
 };

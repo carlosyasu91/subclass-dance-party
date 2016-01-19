@@ -32,9 +32,15 @@ body, a:link, a:visited, a:active{
 }
 .climber{
   position:absolute;
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
 }
 .wins{
   position: absolute;
+}
+
+.apple{
+  position: absolute;;
+  width: 50px;
+  height: 50px;
 }

@@ -36,3 +36,18 @@ makeClimber.prototype.climb = function(){
   }
   return false;
 };
+
+makeClimber.prototype.moveRight = function() {
+  this.left += 10;
+  this.setPosition(this.top, this.left);
+};
+
+makeClimber.prototype.moveLeft = function() {
+  this.left -= 10;
+  this.setPosition(this.top, this.left);
+};
+
+makeClimber.prototype.getHit = function() {
+  this.top += 30;
+  this.setPosition(this.top, this.left);
+};

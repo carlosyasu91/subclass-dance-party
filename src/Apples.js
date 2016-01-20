@@ -20,10 +20,10 @@ makeApples.prototype.step = function() {
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
   if(this.$node){
-    this.top += 100;
+    this.top += 5;
     this.$node.animate({
       top: this.top,
-    }, 30);
+    } , 5);
     // this.$node.toggle();
   }
 

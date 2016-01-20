@@ -2,6 +2,9 @@ var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
   Dancer.call(this, top, left, timeBetweenSteps);
   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
   // so we must keep a copy of the old version of this function
+  this.$node = $('<img src="images/breakdancer.gif" class="breakdancer"></img>');
+
+  this.setPosition(top, left);
   };
 
 //delegation relationship
@@ -18,7 +21,7 @@ makeBlinkyDancer.prototype.step = function() {
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
   if(this.$node){
-    this.$node.toggle();
+    // this.$node.toggle();
   }
 
   // setTimeout(this.$node.toggle(), this.timeBetweenSteps);

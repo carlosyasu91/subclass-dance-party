@@ -54,7 +54,6 @@ $(".addLoopyButton").on("click", function(event) {
       radius);
     $('body').append(dancer.$node);
     dancers.push(dancer);
-    dancer.$node.hover(dancer.mouseOver.bind(dancer));
   });
 
 $(".addGrowingButton").on("click", function(event) {
@@ -107,45 +106,46 @@ function createApples(){
     var apple = new appleMakerFunction(
       $("body").height()/2 - 330,
       $("body").width()/2 + 200 + offset,
-      1500
+      50
       );
     $('body').append(apple.$node);
     apples.push(apple);
     var apple2 = new appleMakerFunction(
       $("body").height()/2 - 330,
       $("body").width()/2 - 250 - offset,
-      1500
+      50
     );
     $('body').append(apple2.$node);
     apples.push(apple2);
 }
 
-setInterval(createApples, 2000);
+// setInterval(createApples, 1000);
 
 function checkCollisionForPlayer1() {
   for(var i = 0; i < apples.length; i++){
-    if(player1.left > apples[i].left-15 && player1.left < apples[i].left+15){
-      if(player1.top > apples[i].top-15 && player1.top < apples[i].top+15){
-        player1.getHit();
+    if(player1.left > apples[i].left-25 && player1.left < apples[i].left+25){
+      if(player1.top > apples[i].top-25 && player1.top < apples[i].top+25){
+        if(player1.top <  $("body").height() - 150){
+          player1.getHit();
+        }
       }
     }
   }
 }
-setInterval(checkCollisionForPlayer1, 30);
+// setInterval(checkCollisionForPlayer1, 10);
+
 function checkCollisionForPlayer2() {
   for(var i = 0; i < apples.length; i++){
-    if(player2.left > apples[i].left-15 && player2.left < apples[i].left+15){
-      if(player2.top > apples[i].top-15 && player2.top < apples[i].top+15){
-        player2.getHit();
+    if(player2.left > apples[i].left-25 && player2.left < apples[i].left+25){
+      if(player2.top > apples[i].top-25 && player2.top < apples[i].top+25){
+        if(player2.top <  $("body").height() - 150){
+          player2.getHit();
+        }
       }
     }
   }
 }
-setInterval(checkCollisionForPlayer2, 30);
-
-//setInterval(overlap, 50);
-
-  //overlap();
+// setInterval(checkCollisionForPlayer2, 10);
 
 $(".lineUp").on("click", function(event) {
     for(var i=0;i<dancers.length;i++){
@@ -153,6 +153,9 @@ $(".lineUp").on("click", function(event) {
     }
   });
 
+/*$(this).bind('mousemove', function(event){
+  $('.breakdancer').css({left: event.pageX+20, top:event.pageY});
+});*/
 
 $(this).keypress(function(event){
 
@@ -170,7 +173,7 @@ $(this).keypress(function(event){
   if(event.keyCode === 106 && player1.left > middleOfTheScreenX + 200){ // J key pressed
     player1.moveLeft();
   }
-  if(event.keyCode === 108 && player1.left < middleOfTheScreenX + 350){ // L key pressed
+  if(event.keyCode === 108 && player1.left < middleOfTheScreenX + 300){ // L key pressed
     player1.moveRight();
   }
 
@@ -187,7 +190,7 @@ $(this).keypress(function(event){
   if(event.keyCode === 97 && player2.left > middleOfTheScreenX - 350){ // A key pressed
     player2.moveLeft();
   }
-  if(event.keyCode === 100 && player2.left < middleOfTheScreenX - 200){ // D key pressed
+  if(event.keyCode === 100 && player2.left < middleOfTheScreenX - 250){ // D key pressed
     player2.moveRight();
   }
 });
